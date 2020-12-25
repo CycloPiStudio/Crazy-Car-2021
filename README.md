@@ -6,7 +6,10 @@ Juego de coches con multiplayer
 
 Plantilla de coches:
 
-gh repo clone BeytoA/3D-Car-With-Settingspanel
+BeytoA/3D-Car-With-Settingspanel
+
+https://github.com/BeytoA/3D-Car-With-Settingspanel
+
 
 Plantilla multiplayer
 
