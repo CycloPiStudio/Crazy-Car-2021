@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Ejecutable/Menus/Manu Principal/MenuPrincipal.gd" type="Script" id=1]
+[ext_resource path="res://Ejecutable/Menus/Cargar/Cargar3D.gd" type="Script" id=1]
 [ext_resource path="res://Ejecutable/Menus/Manu Principal/titulo.png" type="Texture" id=2]
 
 [node name="Cargar" type="Node2D"]
@@ -19,3 +19,23 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 centered = false
+
+[node name="EscalaTexto" type="Node2D" parent="."]
+position = Vector2( 655, 133 )
+scale = Vector2( 5, 5 )
+
+[node name="Cargando" type="Label" parent="EscalaTexto"]
+margin_left = -112.246
+margin_top = 53.4292
+margin_right = 90.7538
+margin_bottom = 130.429
+text = "Cargando  ...
+"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
