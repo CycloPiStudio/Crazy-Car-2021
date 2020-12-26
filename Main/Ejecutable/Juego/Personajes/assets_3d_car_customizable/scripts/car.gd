@@ -35,7 +35,8 @@ func _ready():
 	if(use_camera):
 		cameraOrbit = Spatial.new()
 		var aCameraNode : Camera = Camera.new()
-		aCameraNode.translate(Vector3(0, 0, 0))
+		# el translate estaba a 0,0,0, pruebo a cambiarlo
+		aCameraNode.translate(Vector3(0.5, 1, -6))
 		aCameraNode.rotation_degrees.y = 180
 		# You can change the camera position here
 		# It is currently placed on the hood
