@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Crazy-Car-2021"
-run/main_scene="res://Ejecutable/Juego/Escenarios/Niveles/Nivel 1/TerrenoBasico.tscn"
+run/main_scene="res://Ejecutable/Menus/Manu Principal/MenuPrincipal.tscn"
 config/icon="res://icon.png"
 
 [rendering]
