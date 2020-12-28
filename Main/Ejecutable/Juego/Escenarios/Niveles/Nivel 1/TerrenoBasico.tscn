@@ -1,26 +1,35 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Ejecutable/Juego/Personajes/assets_3d_car_customizable/car.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Ejecutable/Juego/Escenarios/Niveles/Nivel 1/circuito1/ajedrez.jpeg" type="Texture" id=2]
+[ext_resource path="res://Ejecutable/Juego/Escenarios/Niveles/Nivel 1/circuito1/circuito1.dae" type="PackedScene" id=3]
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=1]
 
-[sub_resource type="CubeMesh" id=1]
+[sub_resource type="CubeMesh" id=2]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_texture = ExtResource( 2 )
+uv1_scale = Vector3( 5, 5, 1 )
 
 [node name="TerrenoBasico" type="Spatial"]
 
 [node name="Suelo" type="Spatial" parent="."]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.40194, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -46.7862, 0 )
 
 [node name="StaticBody" type="StaticBody" parent="Suelo"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.43043, 0 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Suelo/StaticBody"]
 transform = Transform( 70, 0, 0, 0, 1, 0, 0, 0, 70, 0, 0, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="MeshInstance" type="MeshInstance" parent="Suelo"]
 transform = Transform( 69, 0, 0, 0, 1, 0, 0, 0, 69, 0, -1.43043, 0 )
-mesh = SubResource( 1 )
-material/0 = null
+mesh = SubResource( 2 )
+material/0 = SubResource( 3 )
 
 [node name="Car" parent="." instance=ExtResource( 1 )]
+
+[node name="circuito1" parent="." instance=ExtResource( 3 )]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -14.2114, -33.5189, -157.365 )
