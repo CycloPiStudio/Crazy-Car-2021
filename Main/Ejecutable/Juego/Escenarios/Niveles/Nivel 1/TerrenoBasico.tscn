@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Ejecutable/Juego/Personajes/assets_3d_car_customizable/car.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Ejecutable/Juego/Escenarios/Niveles/Nivel 1/circuito1/ajedrez.jpeg" type="Texture" id=2]
 [ext_resource path="res://Ejecutable/Juego/Escenarios/Niveles/Nivel 1/circuito1/circuito1.dae" type="PackedScene" id=3]
+[ext_resource path="res://Ejecutable/Juego/Escenarios/Potenciadores/P1-checkpoint/CheckPoint.tscn" type="PackedScene" id=4]
 
 [sub_resource type="BoxShape" id=1]
 
@@ -33,3 +34,6 @@ material/0 = SubResource( 3 )
 
 [node name="circuito1" parent="." instance=ExtResource( 3 )]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, -14.2114, -33.5189, -157.365 )
+
+[node name="CheckPoint" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.7062, -4.05339, 3.92889 )
