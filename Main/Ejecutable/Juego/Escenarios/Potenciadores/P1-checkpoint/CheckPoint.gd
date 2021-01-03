@@ -17,5 +17,7 @@ func _ready():
 
 
 func _on_Area_body_entered(body):
+	#	Atención , aqui lanzo una función del potenciador 2
+	get_node("Luz-rayos").escala_energia()
 	print("coche", body)
 	pass # Replace with function body.
