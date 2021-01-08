@@ -1,0 +1,19 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/moneda.obj-0e85badbfc85263c584176e4ef96b237.mesh"
+
+[deps]
+
+files=[ "res://.import/moneda.obj-0e85badbfc85263c584176e4ef96b237.mesh" ]
+
+source_file="res://Ejecutable/Juego/Escenarios/Potenciadores/P2-moneda/moneda.obj"
+dest_files=[ "res://.import/moneda.obj-0e85badbfc85263c584176e4ef96b237.mesh", "res://.import/moneda.obj-0e85badbfc85263c584176e4ef96b237.mesh" ]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
+offset_mesh=Vector3( 0, 0, 0 )
+optimize_mesh=true
