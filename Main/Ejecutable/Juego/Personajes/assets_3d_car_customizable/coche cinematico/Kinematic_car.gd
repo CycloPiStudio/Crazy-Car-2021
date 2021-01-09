@@ -37,22 +37,23 @@ func _physics_process(delta):
 	
 	velocity += transform.basis.z * speed 
 	get_input(delta)
-	velocity = lerp(velocity, Vector3(velocity.x,velocity.z,velocity.z), 0.1)
+#	velocity = lerp(velocity, Vector3(velocity.x,velocity.z,velocity.z), 0.1)
 	velocity = move_and_slide_with_snap(velocity, Vector3.DOWN*2, Vector3.UP, true)
-	var n  
+	var n = Vector3( 0, 1, 0 )
 	if is_on_floor():
 		n = $RayCast.get_collision_normal()
 		activado = true
-	else:
-		n = Vector3( 0, 1, 0 )
-		activado = false
+#
+#	else:
+#		n = Vector3( 0, 1, 0 )
 	var xform = align_with_y(global_transform, n)
+#	var yform = align_with_x(global_transform, n)
 	global_transform = global_transform.interpolate_with(xform, 0.2)
-	
+
 	#################################
 func get_input(delta):
 	var vy = velocity.y
-	speed = clamp(speed,-maxVelocidad,maxReversa)
+#	speed = clamp(speed,-maxVelocidad,maxReversa)
 #	velocity = Vector3.ZERO
 	if Input.is_action_pressed("accelerate") and activado:
 #		velocity += -transform.basis.z * speed
@@ -80,8 +81,7 @@ func get_input(delta):
 		rotate_y(-rot_speed * delta)
 	if Input.is_action_pressed("steer_left") :
 		rotate_y(rot_speed * delta)
-#	if Input.is_action_pressed("ui_select") and activado:
-#		velocity += -transform.basis.y * speed
+
 	
 	velocity.y = vy
 
@@ -96,5 +96,5 @@ func apply_friction(delta):
 		speed += 10 * delta
 	elif speed>0:
 		speed -= 10 * delta
-		
+	pass
 

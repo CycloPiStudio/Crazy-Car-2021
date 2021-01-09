@@ -1,10 +1,10 @@
 extends KinematicBody
 
 # Car behavior parameters, adjust as needed
-export var gravity = -40.0
+export var gravity = -60.0
 export var wheel_base = 0.6  # distance between front/rear axles
-export var steering_limit = 10.0  # front wheel max turning angle (deg)
-export var engine_power = 30.0
+export var steering_limit = 1.0  # front wheel max turning angle (deg)
+export var engine_power = 100.0
 export var braking = -9.0
 export var friction = -2.0
 export var drag = -2.0
@@ -13,9 +13,9 @@ export var max_speed_reverse = 10.0
 # Car state properties
 var acceleration = Vector3.ZERO  # current acceleration
 var velocity = Vector3.ZERO  # current velocity
-var steer_angle = 0.0  # current wheel angle
+var steer_angle = 0.1  # current wheel angle
 
-export var slip_speed = 9.0
+export var slip_speed = 1.0
 export var traction_slow = 0.75
 export var traction_fast = 0.02
 
@@ -24,12 +24,11 @@ var drifting = false
 func _physics_process(delta):
 # If either wheel is in the air, align to slope.
 
-
-
 	if is_on_floor():
-#		get_input()
+		get_input()
 		apply_friction(delta)
 		calculate_steering(delta)
+	
 	acceleration.y = gravity
 	velocity += acceleration * delta
 	
@@ -81,12 +80,13 @@ func calculate_steering(delta):
 	
 
 
-#func get_input():
-#	# Override this in inherited scripts for controls
-#	pass
+func get_input():
+	# Override this in inherited scripts for controls
+	pass
 #
 func align_with_y(xform, new_y):
 	xform.basis.y = new_y
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()
 	return xform
+

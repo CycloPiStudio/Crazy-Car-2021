@@ -1,14 +1,14 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://ambulance.gd" type="Script" id=1]
-[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/Models/GLTF format/lightFront.material" type="Material" id=2]
-[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/Models/GLTF format/window.material" type="Material" id=3]
-[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/Models/GLTF format/carTire.material" type="Material" id=4]
-[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/Models/GLTF format/plastic.material" type="Material" id=5]
-[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/Models/GLTF format/paintWhite.material" type="Material" id=6]
-[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/Models/GLTF format/lightBlue.material" type="Material" id=7]
-[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/Models/GLTF format/_defaultMat.material" type="Material" id=8]
-[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/Models/GLTF format/paintRed.material" type="Material" id=9]
+[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/ambulance.gd" type="Script" id=1]
+[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/modelos_coches/GLTF format/lightFront.material" type="Material" id=2]
+[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/modelos_coches/GLTF format/window.material" type="Material" id=3]
+[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/modelos_coches/GLTF format/carTire.material" type="Material" id=4]
+[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/modelos_coches/GLTF format/plastic.material" type="Material" id=5]
+[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/modelos_coches/GLTF format/paintWhite.material" type="Material" id=6]
+[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/modelos_coches/GLTF format/lightBlue.material" type="Material" id=7]
+[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/modelos_coches/GLTF format/_defaultMat.material" type="Material" id=8]
+[ext_resource path="res://Ejecutable/Juego/Personajes/coche cinematico/modelos_coches/GLTF format/paintRed.material" type="Material" id=9]
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "body"
@@ -311,16 +311,18 @@ material/2 = null
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.956924, 0 )
 shape = SubResource( 5 )
 
-[node name="CollisionWheelsFron" type="CollisionShape" parent="."]
+[node name="wheel_frontRight" type="CollisionShape" parent="."]
 transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, 0, 0.250563, -0.981397 )
 shape = SubResource( 6 )
 
-[node name="CollisionWheelsRear" type="CollisionShape" parent="."]
+[node name="wheel_frontLeft" type="CollisionShape" parent="."]
 transform = Transform( -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 0, 0, 1, 0, 0.250563, 0.901887 )
 shape = SubResource( 6 )
 
 [node name="Camera" type="Camera" parent="."]
 transform = Transform( 1, 0, 0, 0, 0.995363, 0.0961932, 0, -0.0961932, 0.995363, 0, 1.82336, 5.20322 )
+keep_aspect = 0
+current = true
 
 [node name="FrontRay" type="RayCast" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0467505, -0.981 )
