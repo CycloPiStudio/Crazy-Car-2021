@@ -1,100 +1,65 @@
 extends KinematicBody
-
-export var maxVelocidad =50
-export var maxReversa =30
-export var accelerationReversa = 20
-export var acceleration = 40
-export var fuerzaFreno = 20
-var activado = true
-export var gravity = Vector3.DOWN * 1000
+var gravedad = Vector3.DOWN * 1000
+var velocidad = Vector3.ZERO
+var aceleracion = 20
+var n = Vector3.UP
+var rot_speed = 1
 var speed = 0
-export var rot_speed = 0.85
-var velocity = Vector3.ZERO
-#####################################
-  # current acceleration
+var controles = true
+var max_speed = 15
+var min_speed = 10
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
 
 
-var drifting = false
-#####################################
-
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
-#	velocity += gravity * delta
-#	get_input(delta)
-#	velocity = move_and_slide_with_snap(velocity, Vector3.DOWN*2, Vector3.UP, true)
-#	var n = $RayCast.get_collision_normal()
-#	var xform = align_with_y(global_transform, n)
-#	global_transform = global_transform.interpolate_with(xform, 0.2)
-	#################################
-#	print(velocity.length ( ))
-	velocity = Vector3.ZERO
-	velocity += gravity * delta
-	apply_friction(delta)
-	
-	
-	
-	
-	
-	
-	velocity += transform.basis.z * speed 
 	get_input(delta)
-#	velocity = lerp(velocity, Vector3(velocity.x,velocity.z,velocity.z), 0.1)
-	velocity = move_and_slide_with_snap(velocity, Vector3.DOWN*2, Vector3.UP, true)
-	var n = Vector3( 0, 1, 0 )
-	if is_on_floor():
+	aplicar_friccion(delta)
+	velocidad += gravedad*delta
+	velocidad += transform.basis.z * speed 
+	velocidad = move_and_slide(velocidad,Vector3.UP,true)
+	if $RayCast.is_colliding():
 		n = $RayCast.get_collision_normal()
-		activado = true
-#
-#	else:
-#		n = Vector3( 0, 1, 0 )
-	var xform = align_with_y(global_transform, n)
-#	var yform = align_with_x(global_transform, n)
+		gravedad = -transform.basis.y * 1000
+		controles = true
+	else:
+		gravedad = Vector3.DOWN * 1000
+		controles = false
+	velocidad = Vector3.ZERO
+	
+	
+	
+	
+	var xform = alinear_con_y(global_transform, n)
+	
 	global_transform = global_transform.interpolate_with(xform, 0.2)
 
-	#################################
 func get_input(delta):
-	var vy = velocity.y
-#	speed = clamp(speed,-maxVelocidad,maxReversa)
-#	velocity = Vector3.ZERO
-	if Input.is_action_pressed("accelerate") and activado:
-#		velocity += -transform.basis.z * speed
-		######################################
-		
-		speed -= acceleration*delta	
-#		print("transform.basis.z",transform.basis.z)
-#		print("velocity",velocity)
-		######################################
-	elif Input.is_action_pressed("brake") and activado:
-		
-		if speed<0:
-			speed += fuerzaFreno * delta
-		elif speed>=0:
-			speed += accelerationReversa*delta
-#		
-#	else:
-#		if speed<0:
-#			speed += 10 * delta
-#		elif speed>0:
-#			speed -= 10
-#		else:
-#			speed = 0
-	if Input.is_action_pressed("steer_right") :
-		rotate_y(-rot_speed * delta)
-	if Input.is_action_pressed("steer_left") :
-		rotate_y(rot_speed * delta)
-
-	
-	velocity.y = vy
-
-func align_with_y(xform, new_y):
+	speed = clamp(speed,-max_speed,min_speed)
+	if Input.is_action_pressed("acelerar") and controles:
+		speed -= aceleracion*delta	
+	elif Input.is_action_pressed("frenar") and controles:
+		speed += aceleracion*delta	
+	if Input.is_action_pressed("derecha") and controles:
+#		rotate_y(-rot_speed * delta)
+		rotate_object_local(Vector3.DOWN, 0.05)
+#		transform.basis = transform.basis.rotated(Vector3.DOWN, 0.01)
+	elif Input.is_action_pressed("izquierda") and controles:
+#		rotate_y(rot_speed * delta)
+		rotate_object_local(Vector3.UP, 0.05)
+#		transform.basis = transform.basis.rotated(Vector3.UP, 0.01)
+func alinear_con_y(xform, new_y):
 	xform.basis.y = new_y
 	xform.basis.x = -xform.basis.z.cross(new_y)
 	xform.basis = xform.basis.orthonormalized()
 	return xform
 
-func apply_friction(delta):
+func aplicar_friccion(delta):
 	if speed<0:
 		speed += 10 * delta
 	elif speed>0:
 		speed -= 10 * delta
-	pass
-
+	else:
+		pass
